@@ -1,0 +1,73 @@
+/* Isso aplica o fundo só na página inteira */
+body {
+    background-color: rgb(235, 241, 241);
+    margin: 0;
+    padding: 20px;
+    background-image: url('https://img.freepik.com/vetores-gratis/particle-de-tecnologia-abstrata-realista-de-fundo_23-2148431735.jpg?semt=ais_hybrid&w=740&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;   /* cobre toda a tela */
+    background-position: center;
+}
+
+
+.painel_form{
+    width: 100%;
+    text-align: center;
+}
+
+.titulo_form{
+    background-color: rgb(254, 254, 254); 
+    padding: 20px; 
+    margin: 100px;
+    text-align:center; 
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+input{
+    width: 33.33%;
+    padding: 12px;
+    margin: 5px;
+}
+
+.desc_input{
+    font-weight: bold;
+    margin-top: 10px;
+    color: white;
+}
+
+.btn_salvar{
+    width: 15%;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn_voltar{
+    padding:10px 20px; 
+    margin: 20px;
+    background:red; 
+    color:#fff; 
+    text-decoration:none; 
+    border-radius:5px;
+}
+
+.btn_acessar{
+    padding:10px 20px; 
+    margin: 20px;
+    background:rgb(8, 65, 198); 
+    color:#ffffff; 
+    text-decoration:none; 
+    border-radius:5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn:hover{
+    background-color: rgb(73, 218, 92);
+    transition: 0.2;
+    transform: translateY(-2px); /* Leve elevação ao passar o mouse */
+    font-weight: bold;
+    color: black;
+}
