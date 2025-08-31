@@ -36,6 +36,7 @@ $endereco,$numero,$cep,$cidade,$estado,$salario,$horario,$departamento));
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
+        <title>Cadastro de Funcionário</title>
     </head>
     <body>
         <a href="index.php" id="btn" class="btn_voltar">Voltar</a>

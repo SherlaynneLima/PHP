@@ -30,6 +30,7 @@ if(isset($_POST['acao'])){
  </head>
  <body>
 	<a href="index.php" id="btn" class="btn_voltar">Voltar</a>
+	<a href="listar_usuarios.php"  id="btn" class="btn_acessar">Visualizar Usuários</a>
 	
  	<form method="post" class="painel_form">
 	</br>

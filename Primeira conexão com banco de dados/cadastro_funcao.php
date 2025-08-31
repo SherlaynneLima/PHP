@@ -17,10 +17,12 @@ if(isset($_POST['acao'])){
 <html>
     <head>
         <link rel="stylesheet"  href="style.css">
+        <title>Cadastro de Função</title>
     </head>
     <body>
 
     <a href="index.php" id="btn" class="btn_voltar">Voltar</a>
+    <a href="listar_funcao.php"  id="btn" class="btn_acessar">Visualizar Funções</a>
 
         <form method="post" class="painel_form">
             <p class="desc_input">Nome da Função:</p>
