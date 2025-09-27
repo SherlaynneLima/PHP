@@ -40,6 +40,7 @@ $endereco,$numero,$cep,$cidade,$estado,$salario,$horario,$departamento));
     </head>
     <body>
         <a href="index.php" id="btn" class="btn_voltar">Voltar</a>
+        <a href="listar_funcionario.php" id="btn" class="btn_acessar">Acessar Funcionário</a>
         <form method="post" class="painel_form">
         <p class="desc_input">Nome:</p>
         <input type="text" name="nome" required>

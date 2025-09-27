@@ -123,3 +123,30 @@ input{
     background-color: #f1f1f1;
     transition: 0.3s;
 }
+
+.btn_editar {
+    padding: 6px 12px;
+    background: #88cdfc;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn_editar:hover {
+    background: #3498db;
+}
+
+.btn_excluir {
+    padding: 6px 12px;
+    background: #88cdfc;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 5px;
+    transition: 0.2s;
+}
+
+.btn_excluir:hover {
+    background: rgb(187, 3, 3);
+}

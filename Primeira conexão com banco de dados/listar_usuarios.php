@@ -1,10 +1,30 @@
 <?php
 include_once 'config.php';
+include_once 'Class/Controller.php';
+
+$controller = new Controller($pdo);
+
+// Excluir se receber parâmetro
+if (isset($_GET['excluir'])) {
+    $id = $_GET['excluir'];
+    $res = $controller->deleteUser($id);
+    //$sql = $pdo->prepare("DELETE FROM usuarios WHERE id = ?");
+    
+    if($res->sucesso){
+        echo "<script>
+            alert('Usuário excluído com sucesso!');
+            window.location.href = 'listar_usuarios.php';
+          </script>";
+          exit;
+    }else{
+        echo "Erro:" . $res->erro;
+    }
+
+    
+}
 
 // Buscar todos os usuários
-$sql = $pdo->prepare("SELECT * FROM usuarios");
-$sql->execute();
-$usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
+$usuarios = $controller->getAllUsers();
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +42,7 @@ $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
             <th>ID</th>
             <th>Nome</th>
             <th>Email</th>
+            <th></th>
         </tr>
 
         <?php foreach($usuarios as $usuario): ?>
@@ -29,6 +50,10 @@ $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <td><?= $usuario['id'] ?></td>
                 <td><?= $usuario['nome'] ?></td>
                 <td><?= $usuario['email'] ?></td>
+                <td>
+                <a href="editar_usuario.php?id=<?= $usuario['id'] ?>" class="btn_editar">✏️</a>
+                <a href="?excluir=<?= $usuario['id'] ?>" class="btn_excluir" onclick="return confirm('Tem certeza que deseja excluir?')">🗑️</a>
+            </td>
             </tr>
         <?php endforeach; ?>
     </table>
