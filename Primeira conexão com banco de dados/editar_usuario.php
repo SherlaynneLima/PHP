@@ -1,28 +1,32 @@
 <?php
 include_once 'config.php';
+include_once 'Class/Controller.php';
+
+$controller = new Controller($pdo);
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-
-    // Busca usuário pelo ID
-    $sql = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
-    $sql->execute([$id]);
-    $usuario = $sql->fetch(PDO::FETCH_ASSOC);
+    $usuario = $controller->getUserById($id);
 }
 
 // Atualizar usuário
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_POST['id'];
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $id = $_POST['id'];
+    $senha = $_POST['senha'];
+    
+    $res = $controller->updateUser($id, $nome, $email, $senha);
 
-    $sql = $pdo->prepare("UPDATE usuarios SET nome = ?, email = ? WHERE id = ?");
-    $sql->execute([$nome, $email, $id]);
-
-    echo "<script>
+    if(isset($res->sucesso) && $res->sucesso == 0){
+            echo "<script>alert('Erro: {$res->erro}');</script>";
+    }else{
+        echo "<script>
             alert('Usuário atualizado com sucesso!');
             window.location.href = 'listar_usuarios.php';
-          </script>";
+            </script>";
+          exit;
+    }
 }
 ?>
 
@@ -40,7 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="nome" value="<?= $usuario['nome'] ?>"><br>
         <label class="desc_input">Email:</label>
         <input type="email" name="email" value="<?= $usuario['email'] ?>"><br>
+        <label class="desc_input">Senha:</label>
+        <input type="password" name="senha" value="<?= $usuario['senha'] ?>"><br>
         <button type="submit" id="btn" class="btn_acessar">Salvar</button>
+        <a href="listar_usuarios.php" class="btn_voltar">Voltar</a>
     </form>
 </body>
 </html>

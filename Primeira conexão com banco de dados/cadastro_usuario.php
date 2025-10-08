@@ -1,25 +1,30 @@
 <?php
 include_once 'config.php';
+include_once 'Class/Controller.php';
 
+$controller = new Controller($pdo);
 
 if(isset($_POST['acao'])){
 	$nome = $_POST['nome'];
 	$senha = $_POST['senha'];
 	$email = $_POST['email'];
 
+ //chamar o controller para inserir o usuário
+ $res = $controller->addUser($nome, $email, $senha);
 
-
-	$sql= $pdo->prepare("INSERT INTO `usuarios` VALUES (null,?,?,?)");
-	$sql->execute(array($nome,$senha,$email));
-		echo "<script>
-            alert('Usuário cadastrado com sucesso!');
-            window.location.href = 'cadastro_usuario.php'; // evitar que ao cadastrar um novo usuário e ao aperta F5 não envie a informação novamente para o banco duplicando
-          </script>";
+ if(isset($res->sucesso) && $res->sucesso == 0){
+			echo "<script>alert('Erro: {$res->erro}');</script>";
+ }else{
+			echo "<script>
+			alert('Usuário cadastrado com sucesso!');
+			window.location.href = 'cadastro_usuario.php'; // evitar que ao cadastrar um novo usuário e ao aperta F5 não envie a informação novamente para o banco duplicando
+		  </script>";
+		  exit;
+ }
+ 		
 }
 
 ?>
-
-
 
 <br></br>
  <!DOCTYPE html>

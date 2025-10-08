@@ -27,14 +27,27 @@ class Controller{
     }
 
     // Função para atualizar um usuário existente
-    public function updateUser($id, $nome, $email){
-        $sql = "UPDATE usuarios SET nome = ?, email = ? WHERE id = ?";
-        return $this->crud->executeSQLGeneric($sql, [$id, $nome, $email]);
+    public function updateUser($id, $nome, $email, $senha){
+    $sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?";
+    return $this->crud->executeSQLGeneric($sql, [$nome, $email, $senha, $id]);
     }
+
 
     // Função para deletar um usuário
     public function deleteUser($id){
         $sql = "DELETE FROM usuarios WHERE id = ?";
         return $this->crud->executeSQLGeneric($sql, [$id]);
+    }
+
+    //Função para cadastrar uma nova função
+    public function addFuncao($nome, $descricao){
+        $sql = "INSERT INTO funcoes (nome, descricao) VALUES (?, ?)";
+        return $this->crud->executeSQLGeneric($sql, [$nome, $descricao]);
+    }
+
+    //Função para retornar todas as funções
+    public function getAllFuncoes(){
+        $sql = "SELECT * FROM funcoes";
+        return $this->crud->getSQLGeneric($sql);
     }
 }

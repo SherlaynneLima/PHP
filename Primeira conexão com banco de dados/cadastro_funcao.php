@@ -1,16 +1,24 @@
 <?php
 include_once 'config.php';
+include_once 'Class/Controller.php';
+
+$controller = new Controller($pdo);
 
 if(isset($_POST['acao'])){
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
+    //chamar o controller para inserir a função
+    $res = $controller->addFuncao($nome, $descricao);
 
-    $sql= $pdo->prepare("INSERT INTO `funcoes` VALUES (NULL,?,?)");
-    $sql->execute(array($nome,$descricao));
+    if(isset($res->sucesso) && $res->sucesso == 0){
+        echo "<script>alert('Erro: {$res->erro}');</script>";       
+    }else {
         echo "<script>
             alert('Função cadastrada!');
         window.location.href = 'cadastro_funcao.php';
         </script>";
+        exit;
+    }
 }
 ?>
 

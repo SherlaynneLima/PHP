@@ -1,9 +1,11 @@
 <?php
 include_once 'config.php';
+include_once 'Class/Controller.php';
 
-$sql= $pdo->prepare("SELECT * FROM funcoes");
-$sql->execute();
-$funcoes = $sql->fetchAll(PDO::FETCH_ASSOC);
+$controller = new Controller($pdo);
+
+$funcao = $controller->getAllFuncoes();
+//$sql= $pdo->prepare("SELECT * FROM funcoes");
 
 ?>
 
@@ -22,11 +24,11 @@ $funcoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <th>Nome da Função</th>
                 <th>Descrição da Atividade</th>
             </tr>
-            <?php foreach($funcoes as $funcao): ?>
+            <?php foreach($funcao as $funcoes): ?>
             <tr>
-                <td><?= $funcao['id'] ?></td>
-                <td><?= $funcao['nome'] ?></td>
-                <td><?= $funcao['descricao'] ?></td>
+                <td><?= $funcoes['id'] ?></td>
+                <td><?= $funcoes['nome'] ?></td>
+                <td><?= $funcoes['descricao'] ?></td>
             </tr>
         <?php endforeach; ?>
         </table>
